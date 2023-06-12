@@ -1,4 +1,4 @@
-# Will-Shark-Code-GenerateTools
+# Will-Shark-Code-GenerateTool
 Code generate Tools for [Will-Shark](https://github.com/will-yinchengxin/will-shark)
 
 ```
