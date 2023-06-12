@@ -1,0 +1,14 @@
+bin/*
+pkg/*
+.vscode/*
+*_test.conf
+./.idea
+.idea/workspace.xml
+.idea/*
+vcfn/.idea/
+\.idea/
+go.sum
+.DS_Store
+tests/
+vendor/
+./docs
