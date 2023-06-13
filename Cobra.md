@@ -220,17 +220,23 @@ var cmd = &cobra.Command{
     Long: `This command greets someone. If the name is not provided, it will greet the world.`,
     Args: cobra.MaximumNArgs(1),
     Run: func(cmd *cobra.Command, args []string) {
-        if len(args) > 0 {
-            fmt.Printf("Hello, %s!\n", args[0])
+        language, _ := cmd.Flags().GetString("language")
+    
+        if language == "spanish" {
+            fmt.Println("¡Hola, mundo!")
         } else {
-            fmt.Println("Hello, world!")
+            if len(args) > 0 {
+                fmt.Printf("Hello, %s!\n", args[0])
+            } else {
+                fmt.Println("Hello, world!")
+            }
         }
     },
 }
 
 cmd.Flags().StringP("language", "l", "english", "language for the greeting")
 ````
-在终端中输入greet --language=spanish即可调用该命令，并输出¡Hola, mundo!。
+在终端中输入greet --language=spanish即可调用该命令，并输出 `¡Hola, mundo!`。
 
 ### PersistentFlags
 命令的全局选项列表，用于定义命令及其子命令需要接受的全局选项。
@@ -247,6 +253,19 @@ var rootCmd = &cobra.Command{
 rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.myapp.yaml)")
 ````
 在终端中输入myapp --config=/path/to/config.yaml即可调用该命令，并指定配置文件路径。
+
+在子命令中，可以使用以下代码来获取该参数的值：
+````
+Run: func(cmd *cobra.Command, args []string) {
+    config, _ := cmd.Parent().PersistentFlags().GetString("config")
+    
+    if len(config) > 0 {
+        fmt.Println("Config Path: ", config)
+    } else {
+        fmt.Println("Do Not Get Config Path")
+    }
+},
+````
 
 ## 1 安装
 ````
