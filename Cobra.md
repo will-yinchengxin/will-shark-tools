@@ -73,7 +73,10 @@ Run: func(cmd *cobra.Command, args []string) {
 使用大括号 {} 表示多个选项中的一个，例如：`Use: "search {file|dir} <name>"`
 
 这样就表示 search 命令有一个必选参数 name，以及一个可选的 {file|dir} 选项，表示要搜索的是文件还是目录
-{file|dir} 表示一个必选参数，用于指定要处理的文件或目录。{file|dir} 表示这个参数可以是文件或目录，但是必须指定一个。如果指定的是目录，则根据是否使用了 -r 或 --recursive 参数来决定是否递归处理目录中的所有子目录和文件。
+
+{file|dir} 表示一个必选参数，用于指定要处理的文件或目录。{file|dir} 表示这个参数可以是文件或目录，但是必须指定一个。
+
+如果指定的是目录，则根据是否使用了 -r 或 --recursive 参数 (``Use: "search {file|dir}  [--recursive | -r] <name>"``) 来决定是否递归处理目录中的所有子目录和文件。
 
 ### Short/Long/Example
 - Short：命令的简短描述，用于在帮助文档中显示。
